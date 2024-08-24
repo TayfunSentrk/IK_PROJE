@@ -1,0 +1,25 @@
+﻿@model PersonelInformationViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+
+ 
+    
+
+
+
+<user-picture-thumb-nail class="rounded card-img-top"  picture-url="@Model.PicturePath" width="20"></user-picture-thumb-nail>
+<div class="header-info ms-3" style="position:relative;left:-17px;" >
+    <span class="font-w600 " >Hi,<b>@Model.FirstName @Model.LastName </b>  </span>
+    <small class="text-end " style="font-size:10px!important;" >@Model.Email</small>
+</div>
+
+
+
+

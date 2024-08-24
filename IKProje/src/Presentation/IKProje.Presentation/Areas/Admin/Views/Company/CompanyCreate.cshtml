@@ -1,0 +1,123 @@
+﻿@model CompanyCreateCommand
+
+
+<style> 
+
+    .input-group{
+        margin-top:10px;
+    }
+</style>
+
+    <div class="col-xl-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Şirket Ekle</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form asp-controller="Company" asp-action="CompanyCreate" method="post" enctype="multipart/form-data">
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">Şirket Adı</span>
+                            <input class="form-control" asp-for="Name" placeholder="Şirket Adı Giriniz" />
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">Şirket Unvanı</span>
+                            <input class="form-control" asp-for="Unvan" placeholder="Şirket Unvanı Giriniz" />
+                            <span class="text-danger" asp-validation-for="Unvan"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">MersisNo</span>
+                            <input class="form-control" asp-for="MersisNo" placeholder="MersisNo Giriniz" />
+                            <span class="text-danger" asp-validation-for="MersisNo"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">VergiNo</span>
+                            <input class="form-control" asp-for="VergiNo" placeholder="VergiNo Giriniz" />
+                            <span class="text-danger" asp-validation-for="VergiNo"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">VergiDairesi</span>
+                            <input class="form-control" asp-for="VergiDairesi" placeholder="VergiDairesi Giriniz" />
+                            <span class="text-danger" asp-validation-for="VergiDairesi"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">Adres</span>
+                            <input class="form-control" asp-for="Adres" placeholder="Adres Giriniz" />
+                            <span class="text-danger" asp-validation-for="Adres"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="form-file">
+
+                                <div class="input-group mb-3">
+                                    <div class="form-file">
+                                    <input type="file" class="form-file-input form-control" asp-for="Picture">
+                                    </div>
+                                    <span class="input-group-text">Yükle</span>
+                                </div>
+                            <span class="text-danger" asp-validation-for="Picture"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">Phone</span>
+                            <input class="form-control" asp-for="Phone" placeholder="Phone Giriniz" />
+                            <span class="text-danger" asp-validation-for="Phone"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">Mail</span>
+                            <input class="form-control" asp-for="Mail" placeholder="Mail Giriniz" />
+                            <span class="text-danger" asp-validation-for="Mail"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">CalısanSayisi</span>
+                            <input class="form-control" asp-for="CalisanSayisi" placeholder="CalısanSayisi Giriniz" />
+                            <span class="text-danger" asp-validation-for="CalisanSayisi"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">KurulusTarihi</span>
+                            <input class="form-control" type="date" asp-for="KurulusTarihi" placeholder="KurulusTarihi Giriniz" />
+                            <span class="text-danger" asp-validation-for="KurulusTarihi"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">SozlesmeBaslangic</span>
+                            <input class="form-control" type="date" asp-for="SozlesmeBaslangic" placeholder="SozlesmeBaslangic Giriniz" />
+                            <span class="text-danger" asp-validation-for="SozlesmeBaslangic"></span>
+                        </div>
+
+                        <div class="input-group input-warning-o">
+                            <span class="input-group-text">SozlesmeBitis</span>
+                            <input class="form-control" type="date" asp-for="SozlesmeBitis" placeholder="SozlesmeBitis Giriniz" />
+                            <span class="text-danger" asp-validation-for="SozlesmeBitis"></span>
+                        </div>
+
+
+
+                        <div class="col-12" style="margin-top: 10px">
+                            <button type="submit" class="btn btn-primary mb-2">Kayıt Et</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

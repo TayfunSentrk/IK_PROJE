@@ -1,0 +1,77 @@
+﻿@model  List<PermissionViewModel>
+
+
+
+<style>
+    th,tr{
+        text-align:center;
+    }
+</style>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">İzin Onay Listesi</h4>
+           
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th style="display:none">İzin Onay Id</th>
+                            <th>Yanıtlanma Tarihi</th>
+                            <th>Onay Durumu</th>
+                            <th>Başlangıç Tarihi</th>
+                            <th>Bitiş Tarihi</th>
+                            <th>Toplam Gün Sayısı</th>
+                            <th>İzin Türü Adı</th>
+                            <th>Personel İsmi</th>
+                            <th>İşlemler</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="display:none;">@item.Id</td>
+                                <td>
+                                    @if (item.DateofReply == new DateTime(1, 1, 1))
+                                    {
+                                        <span>Cevaplanmadı</span>
+                                    }
+                                    else
+                                    {
+                                        @item.DateofReply.ToString("dd/MM/yyyy")
+                                    }
+                                </td>
+                                <td>@item.StatusofApproval</td>
+                                <td>@item.StartedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.FinishedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.DayCount</td>
+                                <td>@item.TypeofPermission.Name</td>
+                                <td>@item.Personel.UserName</td>
+
+                                <td>
+                                    <div class="d-flex" style="justify-content:center;align-items:center;">
+                                        <a asp-controller="Approval" asp-area="Yönetici" asp-action="PermissionApproval" asp-route-id="@item.Id" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+          

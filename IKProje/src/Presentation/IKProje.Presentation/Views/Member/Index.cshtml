@@ -1,0 +1,65 @@
+﻿@model PersonelInformationViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container" >
+
+
+ <div class="row">
+
+     <div class="col-md-12">
+
+         <div style="text-align:center">
+
+                <user-picture-thumb-nail class="rounded" style="width:300px" picture-url="@Model.PicturePath"></user-picture-thumb-nail>
+         </div>
+         <table class="table table-hover">
+
+
+             <tbody>
+                 <tr>
+
+                     <th>Adress</th>
+                     <th>PhoneNumber</th>
+                 </tr>
+
+             </tbody>
+
+                <tr>
+
+                    <th>@Model.Address</th>
+                    <th>@Model.PhoneNumber</th>
+                </tr>
+
+           </table>
+
+     </div>
+ </div>
+</div>
+
+
+
+
+@*<form asp-action="Index" asp-controller="Member" method="get">
+   
+    <div asp-validation-summary="ModelOnly"></div>
+  <div class="mb-3">
+    <label asp-for="Address" class="form-label"></label>
+    <input asp-for="Address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <span asp-validation-for="Address"></span>
+  </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PicturePath" class="form-label" style="position:relative;top:-150px"></label>
+
+       
+         
+@*       @*<img  src="@Model.PicturePath" / >*@
+

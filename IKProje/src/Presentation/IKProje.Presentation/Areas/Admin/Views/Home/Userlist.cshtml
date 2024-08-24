@@ -1,0 +1,51 @@
+﻿@using IKProje.Application.ViewModels.Personel
+@model List<PersonelViewModel>
+
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">@ViewData["Title"]</h4>
+            <div class="input-box">
+                <div class="mb-3 select-box">
+                    <select id="companySelect" class="">
+                        <option value="">Şirket Seç</option>
+                        @foreach (var item in ViewBag.companyViewModel)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" id="personelListContainer">
+                <!-- Partial View burada yüklenecek -->
+                 @await Html.PartialAsync("PartialMyView", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('companySelect').addEventListener('change', function () {
+            var companyId = this.value;
+
+            // AJAX isteği ile ilgili personelleri getir
+            $.ajax({
+                url: '/Admin/Home/PartialMyView', // URL'i kendi route yapınıza göre ayarlayın
+                type: 'GET',
+                data: { companyId: companyId },
+                success: function (response) {
+                    // Sunucudan dönen Partial View içeriğini personel listesi konteynerine yerleştir
+                    $('#personelListContainer').html(response);
+                },
+                error: function (error) {
+                    console.error("Hata:", error);
+                }
+            });
+        });
+    </script>
+}

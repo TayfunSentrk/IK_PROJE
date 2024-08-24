@@ -1,0 +1,32 @@
+﻿@model VocationViewModel
+
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">MeslekDüzenle</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="Vocation" asp-action="VocationEdit" method="post">
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Meslek Adı</span>
+                        <input class="form-control" asp-for="Name" placeholder="Meslek Adı"  />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary mb-2">Düzenle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

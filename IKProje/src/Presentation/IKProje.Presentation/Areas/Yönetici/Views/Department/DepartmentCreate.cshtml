@@ -1,0 +1,33 @@
+﻿
+@model DepartmentCreateCommand
+
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Departmant Ekle</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="Department" asp-action="DepartmentCreate" method="post">
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Departmant Adı</span>
+                        <input class="form-control" asp-for="Name" placeholder="Departmant Adı"  />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary mb-2">Ekle</button>
+                    </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

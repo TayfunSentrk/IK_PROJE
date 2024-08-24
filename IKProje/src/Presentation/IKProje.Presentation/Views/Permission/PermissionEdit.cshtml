@@ -1,0 +1,118 @@
+﻿@model PermissonViewForEdit
+
+
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">İzin Düzenleme</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="Permission" asp-action="PermissionEdit" method="post">
+
+
+
+                    <div class="input-group input-warning-o">
+                        <span class="col-sm-4 input-group-text" asp-for="TypeofPermission">İzin Türü</span>
+                        <div class="col-sm-8">
+                            <select class="default-select  form-control wide" asp-for="TypeofPermissionId" id="TypeofPermissionId">
+
+
+
+                                @foreach (var item in ViewBag.TypeofPermision)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+
+
+                            </select>
+                            <span class="text-danger" asp-validation-for="TypeofPermissionId"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Başlangıç Tarihi</span>
+                        <input class="form-control" type="date" asp-for="StartedDate" id="startedDate" placeholder="Başlangıç Tarihi" />
+                        <span class="text-danger" asp-validation-for="StartedDate"></span>
+                    </div>
+                  @*  <div class="input-group input-warning-o">
+                        <span class="input-group-text">Bitiş Tarihi</span>
+                        <input class="form-control" type="date" asp-for="FinishedDate" id="finishedDate" readonly placeholder="Bitiş Tarihi" />
+                        <span class="text-danger" asp-validation-for="FinishedDate" ></span>
+                    </div>*@
+
+
+
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">İzin Gün Sayısı</span>
+                        <input class="form-control"  id="TotalDays" readonly placeholder="Toplam Miktar" />
+                        <span class="text-danger" ></span>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-secondary mb-2">İzin Düzenle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // AJAX isteği gönder
+       
+
+        // İzin türü seçimini dinle
+        function fetchPermissionDays(permissionId) {
+            $.ajax({
+                url: "/Permission/GetPermissionDays",
+                method: "GET",
+                data: { permissionId: permissionId },
+                success: function (data) {
+                    $("#TotalDays").val(data);
+                },
+                error: function () {
+                    console.log("AJAX isteği başarısız oldu.");
+                }
+            });
+        }
+
+        // Fetch days for initially selected permission type
+        var initialPermissionId = $("#TypeofPermissionId").val();
+        if (initialPermissionId) {
+            fetchPermissionDays(initialPermissionId);
+        }
+
+        // Listen to changes in permission type and fetch days accordingly
+        $("#TypeofPermissionId").on("change", function () {
+            var selectedPermissionId = $(this).val();
+            fetchPermissionDays(selectedPermissionId);
+        });
+
+          
+
+    });
+
+
+</script>

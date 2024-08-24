@@ -1,0 +1,143 @@
+﻿
+
+@model PermissionCreateCommand
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">İzin Ekle</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="Permission" asp-action="PermissionCreate" method="post">
+                    @*<div class="input-group input-warning-o">
+                        <span class="input-group-text">İzin Adı</span>
+                        <input class="form-control" asp-for="Name" placeholder="İzin Adı"  />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>*@
+
+                    <div class="input-group input-warning-o">
+                        <span class="col-sm-4 input-group-text" asp-for="TypeofPermission">İzin Türü</span>
+                        <div class="col-sm-8">
+                            <select class="default-select  form-control wide" asp-for="TypeofPermissionId" id="TypeofPermissionId">
+
+
+
+                                @foreach (var item in ViewBag.TypeofPermision)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+
+
+                            </select>
+                            <span class="text-danger" asp-validation-for="TypeofPermissionId"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">İzin Gün Sayısı</span>
+                        <input class="form-control" id="TotalDays" placeholder="Toplam Miktar" readonly />
+
+                    </div>
+                    <div class="input-group input-warning-o" style="display:none;">
+                        <span class="input-group-text">Cevaplanma Tarihi</span>
+                        <input class="form-control" type="date" asp-for="DateofReply" placeholder="Cevaplanma Tarihi"  />
+                        <span class="text-danger" asp-validation-for="DateofReply"></span>
+                    </div>
+
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Başlangıç Tarihi</span>
+                        <input class="form-control" type="date" asp-for="StartedDate" id="startedDate" placeholder="Başlangıç Tarihi"  />
+                        <span class="text-danger" asp-validation-for="StartedDate"></span>
+                    </div>
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Bitiş Tarihi</span>
+                        <input class="form-control" type="date" asp-for="FinishedDate" id="finishedDate"  readonly placeholder="Bitiş Tarihi"    />
+                        <span class="text-danger" asp-validation-for="FinishedDate"></span>
+                    </div>
+
+                                       
+
+                   
+
+
+                   
+
+
+           
+
+
+
+                      <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary mb-2">Kayıt Et</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+
+        // İzin türü seçimini dinle
+        $("#TypeofPermissionId").on("change", function () {
+            var selectedPermissionId = $(this).val();
+
+            // AJAX isteği gönder
+            $.ajax({
+                url: "/Permission/GetPermissionDays", // AJAX isteğinin yönlendirileceği controller ve action'ı ayarlayın
+                method: "GET",
+                data: { permissionId: selectedPermissionId },
+                success: function (data) {
+                    // AJAX başarılı olduğunda, dönen veriyi kullanarak izin gün sayısını güncelle
+                    $("#TotalDays").val(data);
+                },
+                error: function () {
+                    console.log("AJAX isteği başarısız oldu.");
+                }
+            });
+        });
+
+
+        $('#TypeofPermissionId').on('change', function () {
+            calculateFinishedDate();
+        });
+
+        $('#startedDate').on('change', function () {
+            calculateFinishedDate();
+        });
+
+        function calculateFinishedDate() {
+            var startedDateText = $("#startedDate").val();
+            var totalDaysText = $("#TotalDays").val();
+
+            var startedDate = new Date(startedDateText);
+            var totalDays = parseInt(totalDaysText);
+
+            if (!isNaN(startedDate.getDate()) && !isNaN(totalDays)) {
+                var finishedDate = new Date(startedDate.setDate(startedDate.getDate() + totalDays));
+                $("#finishedDate").val(finishedDate.toISOString().split('T')[0]);
+            }
+        }
+      
+    });
+
+
+
+ 
+
+   
+</script>

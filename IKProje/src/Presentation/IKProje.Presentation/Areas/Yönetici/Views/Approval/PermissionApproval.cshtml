@@ -1,0 +1,106 @@
+﻿@model PermissionViewModel
+
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12" style="padding-left:50px!important">
+            <div class="col-xl-9 col-lg-9 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">İzin Onay Düzenle</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <form asp-controller="Approval" asp-action="PermissionApproval" method="post">
+                                <div class="input-group input-warning-o" style="display:none;">
+                                    <span class="input-group-text">İzin Onay Id</span>
+                                    <input class="form-control" asp-for="Id" />
+                                    <span class="text-danger" asp-validation-for="Id"></span>
+                                </div>
+
+                                <div class="input-group input-warning-o" style="display:none;">
+                                    <span class="input-group-text">İstek Tarihi</span>
+                                    <input class="form-control" asp-for="DateofReply" readonly />
+
+                                </div>
+
+
+
+                                <div class="input-group input-warning-o">
+                                    <span class="input-group-text">Başlangıç Tarihi</span>
+                                    <input class="form-control" asp-for="StartedDate" readonly />
+
+                                </div>
+
+                                <div class="input-group input-warning-o">
+                                    <span class="input-group-text">Bitiş Tarihi</span>
+                                    <input class="form-control" asp-for="FinishedDate" readonly />
+
+                                </div>
+
+                                <div class="input-group input-warning-o">
+                                    <span class="input-group-text">Toplam Gün Sayısı</span>
+                                    <input class="form-control" asp-for="DayCount" readonly />
+
+                                </div>
+
+
+
+                                <div class="input-group input-warning-o">
+                                    <span class="input-group-text">İzin Türü Adı</span>
+                                    <input class="form-control" asp-for="TypeofPermission.Name" readonly />
+
+                                </div>
+
+                                <div class="input-group input-warning-o">
+                                    <span class="input-group-text">Personel İsmi</span>
+                                    <input class="form-control" asp-for="Personel.UserName" readonly />
+
+                                </div>
+
+
+
+                                <div class="input-group input-warning-o">
+                                    <span class="col-sm-4 input-group-text" asp-for="TypeofPermission">Onay Durumu</span>
+                                    <div class="col-sm-8">
+                                        <select class="form-select" asp-for="StatusofApproval">
+
+
+
+                                            @foreach (var item in ViewBag.ApprovalList)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12" style="margin-top: 10px">
+                                    <button type="submit" class="btn btn-primary mb-2">Düzenle</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+
+
+
+

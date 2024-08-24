@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CompanyViewModel>
+
+
+<style> 
+
+    table th,table td{
+        text-align:center!important;
+    }
+
+</style>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Şirket Listesi</h4>
+            <a asp-controller="Company" asp-action="CompanyCreate" class="btn btn-primary btn-sm">Şirket Ekle</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Şirket Id</th>
+                            <th >Şirket Adı</th>
+                            <th>Unvan</th>
+                            <th>MersisNo</th>
+                            <th>VergiNo</th>
+                            <th>VergiDairesi</th>
+                            <th>Adres</th>
+                            <th>LogoPath</th>
+                            <th>Phone</th>
+                            <th>Mail</th>
+                            <th>CalısanSayisi</th>
+                            <th>KurulusTarihi</th>
+                            <th>SozlesmeBaslangic</th>
+                            <th>SozlesmeBitis</th>
+                             <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="display:none;">@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Unvan</td>
+                                <td>@item.MersisNo</td>
+                                <td>@item.VergiNo</td>
+                                <td>@item.VergiDairesi</td>
+                                <td>@item.Adres</td>
+                                <td>
+                                    <user-picture-thumb-nail class="img-fluid" picture-url="@item.LogoPath"></user-picture-thumb-nail>
+
+                                    @*   <iclass="img-fluid" src="@Url.Content($"~/userpictures/ {item.LogoPath}")" width="50" alt="Company Logo">*@
+                                    @*<img src="~/userpictures/ d16101e9-7996-49c0-adc9-ef25eaa58ece.jpg" width="50" />*@
+                                </td>
+                                <td>@item.Phone</td>
+                                <td>@item.Mail</td>
+                                <td>@item.CalisanSayisi</td>
+                                <td>@item.KurulusTarihi.ToString("dd/MM/yyyy")</td>
+                                <td>@item.SozlesmeBaslangic.ToString("dd/MM/yyyy")</td>
+                                <td>@item.SozlesmeBitis.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a asp-controller="Company" asp-action="CompanyEdit" asp-route-id="@item.Id" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                        <a asp-controller="Company" asp-action="CompanyDelete" asp-route-id="@item.Id" class="btn btn-danger shadow btn-xs sharp me-1"><i class="fa fa-trash"></i></a>
+                                        <a href="#" class="btn btn-success shadow btn-xs sharp">
+                                            <i class="fa fa-user"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+ 
+    

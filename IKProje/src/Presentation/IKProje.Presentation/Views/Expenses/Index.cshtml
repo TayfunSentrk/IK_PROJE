@@ -1,0 +1,76 @@
+﻿
+
+@model  List<ExpensesViewModel>
+
+<style>
+    tr, td {
+        text-align: center !important;
+    }
+</style>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Harcama Listesi</h4>
+            <a asp-controller="Expenses" asp-action="ExpensesCreate" class="btn btn-primary btn-sm">Harcama Ekle</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th style="display:none">Harcama Id</th>
+                            <th>Harcama Adı</th>
+                            <th>Talep Tarihi</th>
+                            <th>Cevaplanma Tarihi</th>
+                            <th>Total Miktar</th>
+                            <th>Para Birimi</th>
+
+                            <th>Harcama Türü</th>
+                            <th>Dökümantasyon</th>
+                            <th>İşlemler</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="display:none;">@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.RequestDate</td>
+                                <td>
+                                    @if (item.DateofReply == new DateTime(1, 1, 1))
+                                    {
+                                        <span>Cevaplanmadı</span>
+                                    }
+                                    else
+                                    {
+                                        @item.DateofReply
+                                    }
+                                </td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.Currency</td>
+                                <td>@item.TypeofExpenses</td>
+                                <td>@item.Documantation</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a asp-controller="Expenses" asp-action="ExpensesEdit" asp-route-id="@item.Id" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                        <a asp-controller="Expenses" asp-action="ExpensesDelete" asp-route-id="@item.Id" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

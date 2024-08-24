@@ -1,0 +1,85 @@
+﻿
+@model AdvanceCreateCommand
+
+
+<style> 
+
+    .input-group{
+        margin-top:20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Avans Ekle</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="Advance" asp-action="AdvanceCreate" method="post">
+                    @*<div class="input-group input-warning-o">
+                        <span class="input-group-text">Avans Adı</span>
+                        <input class="form-control" asp-for="Name" placeholder="Avans Adı"  />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>*@
+
+                    <div class="input-group input-warning-o">
+                        <span class="col-sm-4 input-group-text" asp-for="TypeofAdvance">Avans Türü </span>
+                        <div class="col-sm-8">
+                            <select class="form-control" asp-for="TypeofAdvance">
+                                <option value="">Avans Türü Seçiniz</option>
+                                @foreach (var item in ViewBag.TypeofAdvance as List<SelectListItem>)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                            <span class="text-danger" asp-validation-for="TypeofAdvance"></span>
+                        </div>
+                    </div>
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Toplam Tutar</span>
+                        <input class="form-control" asp-for="TotalAmount" placeholder="Toplam Miktar"  />
+                        <span class="text-danger" asp-validation-for="TotalAmount"></span>
+                    </div>
+
+
+                   
+
+                    <div class="input-group input-warning-o">
+                        <span class="col-sm-4 input-group-text" asp-for="Currency">Para Birimi</span>
+                        <div class="col-sm-8">
+                            <select class="form-control" asp-for="Currency" >
+                                <option value="">Para Türünü Seçiniz</option>
+                                @foreach (var item in ViewBag.Currency as List<SelectListItem>)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+
+                                
+                            </select>
+                            <span class="text-danger" asp-validation-for="Currency"></span>
+                        </div>
+                    </div>
+                    
+
+
+
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">Avans Tanımı</span>
+                        <input class="form-control" asp-for="Description" placeholder="Tanımı"  />
+                    </div>
+
+                   
+
+
+                    <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary mb-2">Kayıt Et</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

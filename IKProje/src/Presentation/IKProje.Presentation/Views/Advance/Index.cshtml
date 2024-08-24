@@ -1,0 +1,74 @@
+﻿
+
+@model List<AdvanceViewModel>
+
+<style>
+    tr, td {
+        text-align: center !important;
+    }
+</style>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Avans Listesi</h4>
+            <a asp-controller="Advance" asp-action="AdvanceCreate" class="btn btn-primary btn-sm">Avans Ekle</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th style="display:none">Avans Id</th>
+                            <th >Avans Adı</th>
+                            <th >Talep Tarihi</th>
+                            <th >Cevaplanma Tarihi</th>
+                            <th >Total Miktar</th>
+                            <th >Para Birimi</th>
+                           
+                            <th >Avans Türü</th>
+                            <th >Avans Tanımı</th>
+                            <th >İşlemler</th>
+                         
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="display:none;">@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.RequestDate</td>
+                                <td>
+                                    @if (item.DateofReply == new DateTime(1, 1, 1))
+                                    {
+                                        <span>Cevaplanmadı</span>
+                                    }
+                                    else
+                                    {
+                                        @item.DateofReply
+                                    }
+                                </td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.Currency</td>
+                                <td>@item.TypeofAdvance</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a asp-controller="Advance" asp-action="AdvanceEdit" asp-route-id="@item.Id" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                        <a asp-controller="Advance" asp-action="AdvanceDelete" asp-route-id="@item.Id" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        

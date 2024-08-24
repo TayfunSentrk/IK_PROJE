@@ -1,0 +1,79 @@
+﻿@using IKProje.Application.ViewModels.Personel;
+
+
+}
+
+
+@model List<PersonelViewModel>
+
+<style>
+
+    th, td {
+        text-align: center !important;
+    }
+
+</style>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Kullanici Listesi</h4>
+          @*  <input type="hidden" id="selectedCompanyId" name="selectedCompanyId" value="" />
+            <div class="input-box">
+                @*      <label>Şirket</label>*@
+                @*<div class="mb-3 select-box">
+                    <select id="companySelect" class="">
+                        <option value="">Şirket Seç</option>
+                        @foreach (var item in ViewBag.companyViewModel)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>*@
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Id</th>
+                            <th>UserName</th>
+                            <th>Email</th>
+                            <th>Roller</th>
+                            <th>Rol İşlemleri</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="display:none;">@item.Id</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Email</td>
+
+
+                                <td>
+
+                                    <user-role-names id="@item.Id"></user-role-names>  @* Bu tagHaleperı oluştur *@
+
+
+                                </td>
+
+                                <td>
+                                    <a asp-controller="Roles" asp-action="RoleAssignToPersonel" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-danger shadow btn-xs sharp">
+                                        <i class="fa fa-user-plus"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>

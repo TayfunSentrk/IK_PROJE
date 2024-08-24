@@ -1,0 +1,60 @@
+﻿@model TypeofPermissionViewModel
+
+
+
+
+
+<style>
+
+    .input-group {
+        margin-top: 20px;
+    }
+</style>
+<div class="col-xl-6 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">İzin Türü Düzenle</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-controller="TypeofPermission" asp-action="TypeofPermissionEdit" method="post">
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">İzin Türü Adı</span>
+                        <input class="form-control" asp-for="Name" placeholder="İzin Türü Adı"  />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="input-group input-warning-o">
+                        <span class="input-group-text">İzin Türü Süresi</span>
+                        <input class="form-control" asp-for="Duration" placeholder="İzin Türü Süresi"  />
+                        <span class="text-danger" asp-validation-for="Duration"></span>
+                    </div>
+                     <div class="input-group input-warning-o">
+                        <span class="col-sm-4 input-group-text" asp-for="TypeofAdvance">İzin Türü </span>
+                        <div class="col-sm-8">
+                            <select class="form-control" asp-for="Gender">
+                                <option value="">@Model.Gender</option>
+                                @foreach (var item in ViewBag.Gender )
+                                {
+                                   
+                                        <option value="@item.Value">@item.Text</option>
+                                
+                                    
+                                }
+                            </select>
+                            <span class="text-danger" asp-validation-for="Gender"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary mb-2">Düzenle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
